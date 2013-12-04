@@ -1,0 +1,4 @@
+dngu_web:
+    resource: "@DnguWebBundle/Resources/config/routing.yml"
+    prefix:   /
+
