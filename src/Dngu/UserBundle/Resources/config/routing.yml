@@ -1,0 +1,8 @@
+login:
+    pattern:  /login
+    defaults: { _controller: DnguUserBundle:Login:login }
+    methods:    get
+    
+register:
+    pattern:  /register
+    defaults: { _controller: DnguUserBundle:Login:register }
