@@ -1,0 +1,58 @@
+{% extends "::base.html.twig" %}
+{% block title %}登录{% endblock title %}
+{% block page_title %}
+<div class="row-fluid">
+    <div id="page-title" class="span4 offset4">
+        <h2>登录</h2>
+    </div>
+</div>
+{% endblock page_title %}
+{% block wrapper %}
+<div class="row-fluid">
+     {% if error %}
+        <div id="wrapper" class="full lr-page span4 offset4">
+            <div class="text_error">{{ error|trans({}, 'FOSUserBundle') }}</div>
+        </div>
+    {% endif %}
+     
+    <div id="wrapper" class="full lr-page span4 offset4">
+        
+        <div class="row-fluid">
+            <div id="login-form" class="span12">
+                <div class="page-title-small">
+                    <h3>快速登陆</h3>
+                </div>
+                <a href="" class="facebook_connect">
+                    <div class="img"><i class="fa-icon-facebook"></i></div>
+                    <div class="text">新浪微博</div>
+                </a>
+                <a href="" class="twitter_connect">
+                    <div class="img"><i class="fa-icon-twitter"></i></div>
+                    <div class="text">腾讯微博</div>
+                </a>
+                <div class="page-title-small">
+                    <h3 style="background:#f0f0f0">或</h3>
+                </div>
+                <form method="post" action="{{ path('fos_user_security_check') }}" >
+                <div class="row-fluid">
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                    <input class="span12" id="user" name="_username" type="text" value="" placeholder="用户名" />
+                    <input class="span12" id="pass" name="_password" type="password" value="" placeholder="密码" />
+                </div>
+                <div class="row-fluid">
+                    <div class="remember">
+                        <input id="remember" name="_remember_me" value="on" type="checkbox"  /> 记住我！
+                    </div>
+                    <div class="forgot">
+                        <a href="#">忘记密码？</a>
+                    </div>
+                </div>	
+                <div class="actions">
+                    <button type="submit" name="_submit" class="btn span12">登 录</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock wrapper %}

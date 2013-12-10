@@ -27,10 +27,7 @@
                     <h3 style="background:#f0f0f0">或者</h3>
                 </div>
                 <form method="post" action="{{ path('register') }}" />
-                {% form_theme form 'DnguUserBundle:Login:register_form.html.twig' %}
-                {{ form_row(form.email) }}
                     <div class="row-fluid">
-                        <!--
                         {{ form_widget(form._token) }}
                         {{ form_widget(form.username, {'attr': {'class': 'span12', 'placeholder':'用户名'} }) }}
                         {{ form_errors(form.username) }}
@@ -40,7 +37,6 @@
                         {{ form_errors(form.plainPassword.first) }}
                         {{ form_widget(form.plainPassword.second, {'attr': {'class': 'span12', 'placeholder':'确认密码'} }) }}
                         {{ form_errors(form.plainPassword.second) }}
-                        -->
                     </div>
                     <div class="actions">
                         <input type="submit"  class="btn span12" value="注册" />

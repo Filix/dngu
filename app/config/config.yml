@@ -70,3 +70,8 @@ fos_user:
     db_driver: orm 
     firewall_name: main
     user_class: Dngu\UserBundle\Entity\User
+    
+    #需要邮件激活
+    registration:
+        confirmation:
+            enabled:    true

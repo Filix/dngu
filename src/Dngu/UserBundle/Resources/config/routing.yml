@@ -1,8 +1,15 @@
 login:
     pattern:  /login
-    defaults: { _controller: DnguUserBundle:Login:login }
-    methods:    get
-    
+    defaults: { _controller: FOSUserBundle:Security:login }
+
 register:
     pattern:  /register
-    defaults: { _controller: DnguUserBundle:Login:register }
+    defaults: { _controller: FOSUserBundle:Registration:register }
+#    
+#check_email:
+#    pattern:  /register/check-email
+#    defaults: { _controller: DnguUserBundle:Login:checkEmail }
+#check_email:
+#    pattern:  /register/check-email
+#    defaults: { _controller: DnguUserBundle:Login:checkEmail }
+

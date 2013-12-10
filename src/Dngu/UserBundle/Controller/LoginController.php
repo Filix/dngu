@@ -3,6 +3,9 @@
 namespace Dngu\UserBundle\Controller;
 
 use Dngu\WebBundle\Controller\BaseController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use FOS\UserBundle\Model\UserInterface;
+use Symfony\Component\HttpFoundation\Response;
 
 class LoginController extends BaseController
 {
@@ -13,9 +16,10 @@ class LoginController extends BaseController
     
     public function registerAction()
     {
-        $form = $this->container->get('fos_user.registration.form');
-        $formHandler = $this->container->get('fos_user.registration.form.handler');
-        $confirmationEnabled = $this->container->getParameter('fos_user.registration.confirmation.enabled');
+        $form = $this->getContainer()->get('fos_user.registration.form');
+        $formHandler = $this->getContainer()->get('fos_user.registration.form.handler');
+        $confirmationEnabled = $this->getContainer()->getParameter('fos_user.registration.confirmation.enabled', true);
+        $confirmationEnabled = true;
         $process = $formHandler->process($confirmationEnabled);
         
         if ($process) {
@@ -23,7 +27,7 @@ class LoginController extends BaseController
             $authUser = false;
             if ($confirmationEnabled) {
                 $this->container->get('session')->set('fos_user_send_confirmation_email/email', $user->getEmail());
-                $route = 'fos_user_registration_check_email';
+                $route = 'check_email';
             } else {
                 $authUser = true;
                 $route = 'fos_user_registration_confirmed';
@@ -31,7 +35,6 @@ class LoginController extends BaseController
 
             $this->setFlash('fos_user_success', 'registration.flash.user_created');
             $url = $this->getRouter()->generate($route);
-            var_dump($url);exit;
             $response = new RedirectResponse($url);
 
             if ($authUser) {
@@ -43,5 +46,24 @@ class LoginController extends BaseController
         return $this->render('DnguUserBundle:Login:register.html.twig', array(
             'form' => $form->createView(),
         ));
+    }
+    
+    /**
+     * Authenticate a user with Symfony Security
+     *
+     * @param \FOS\UserBundle\Model\UserInterface        $user
+     * @param \Symfony\Component\HttpFoundation\Response $response
+     */
+    protected function authenticateUser(UserInterface $user, Response $response)
+    {
+        try {
+            $this->container->get('fos_user.security.login_manager')->loginUser(
+                $this->container->getParameter('fos_user.firewall_name'),
+                $user,
+                $response);
+        } catch (AccountStatusException $ex) {
+            // We simply do not authenticate users which do not pass the user
+            // checker (not enabled, expired, etc.).
+        }
     }
 }
