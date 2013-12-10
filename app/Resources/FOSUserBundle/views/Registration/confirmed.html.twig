@@ -1,0 +1,15 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+{% block page_title %}
+<div class="row-fluid">
+    <div id="page-title" class="span4 offset4">
+        <h2>注册成功</h2>
+    </div>
+</div>
+{% endblock page_title %}
+{% block wrapper %}
+    <p>{{ user.username }}，账号已成功激活</p>
+    {% if app.session is not empty %}
+        {% set targetUrl = app.session.get('_security.' ~ app.security.token.providerKey ~ '.target_path') %}
+        {% if targetUrl is not empty %}<p><a href="{{ targetUrl }}">返回刚才的页面</a></p>{% endif %}
+    {% endif %}
+{% endblock wrapper %}

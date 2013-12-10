@@ -4,13 +4,20 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class BaseController extends Controller
 {
-    
+    /*
+     * 
+     */
+    protected function getContainer(){
+        return $this->container;
+    }
+
+
     /**
      * 
      */
     protected function getRouter()
     {
-        return $this->container->get('router');
+        return $this->getContainer()->get('router');
     }
     /**
      * @param string $action
@@ -26,6 +33,6 @@ class BaseController extends Controller
      */
     protected function getFlash()
     {
-        return $this->container->get('session')->getFlashBag();
+        return $this->getContainer()->get('session')->getFlashBag();
     }
 }
