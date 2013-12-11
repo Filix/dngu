@@ -25,13 +25,13 @@
                         {{ form_widget(form.plainPassword.second, {'attr': {'class': 'span12', 'placeholder':'确认密码'} }) }}
                         {{ form_errors(form.plainPassword.second) }}
         </div>
+        <div class="actions">
+            <input type="submit"  class="btn span12" value="注 册" />
+        </div>
         <div class="row-fluid">
             <div class="forgot">
                 <a href="{{ path('login') }}">已有账号？</a>
             </div>
         </div>	
-        <div class="actions">
-            <input type="submit"  class="btn span12" value="注 册" />
-        </div>
     </form>
 </div>

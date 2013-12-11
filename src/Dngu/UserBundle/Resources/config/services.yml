@@ -2,6 +2,6 @@ parameters:
 #    dngu_user.example.class: Dngu\UserBundle\Example
 
 services:
-#    dngu_user.example:
-#        class: %dngu_user.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
+    dngu.weibo.oauth:
+        class: Dngu\UserBundle\Util\WeiboOauthService
+        arguments: [@router, %oauth.weibo%]

@@ -16,7 +16,7 @@
                     <h3>注册成功</h3>
                 </div>
                 <h3>激活邮件已发送到邮箱</h3>
-                <h3>请先激活你的账号，<a href="http://mail.{{ user.email}}" target="_blank">立即激活</a></h3>
+                <h3>请先激活你的账号，<a href="{{ user.email|mailhost }}" target="_blank">立即激活</a></h3>
             </div>
         </div>
     </div>

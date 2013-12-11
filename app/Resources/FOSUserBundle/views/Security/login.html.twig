@@ -43,12 +43,15 @@
                         <input id="remember" name="_remember_me" value="on" type="checkbox"  /> 记住我！
                     </div>
                     <div class="forgot">
-                        <a href="{{ path('register') }}">注册</a>&nbsp;&nbsp;&nbsp;<a href="{{ path('fos_user_resetting_request') }}">忘记密码？</a>
+                        <a href="{{ path('fos_user_resetting_request') }}">忘记密码？</a>
                     </div>
                 </div>	
                 <div class="actions">
                     <button type="submit" name="_submit" class="btn span12">登 录</button>
                 </div>
+                <div class="forgot">
+                        <a href="{{ path('register') }}">注册</a>
+                    </div>
                 </form>
             </div>
         </div>

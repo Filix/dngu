@@ -2,6 +2,7 @@ parameters:
 #    dngu_web.example.class: Dngu\WebBundle\Example
 
 services:
-#    dngu_web.example:
-#        class: %dngu_web.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
+    twig_extension:
+        class: Dngu\WebBundle\Twig\TwigExtension
+        tags:
+            - { name: twig.extension }

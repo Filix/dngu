@@ -9,7 +9,12 @@ register:
 check_login:
     pattern:  /logincheck
     defaults: { _controller: DnguUserBundle:Login:check }
-#check_email:
-#    pattern:  /register/check-email
-#    defaults: { _controller: DnguUserBundle:Login:checkEmail }
+
+weibo_login:
+    pattern:  /login/weibo
+    defaults: { _controller: DnguUserBundle:Login:weiboLogin }
+
+weibo_callback:
+    pattern:  /login/weibo_callback
+    defaults: { _controller: DnguUserBundle:Login:weiboCallback }
 
