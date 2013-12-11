@@ -7,16 +7,10 @@
     </div>
 </div>
 {% endblock page_title %}
+
 {% block wrapper %}
 <div class="row-fluid">
-     {% if error %}
-        <div id="wrapper" class="full lr-page span4 offset4">
-            <div class="text_error">{{ error|trans({}, 'FOSUserBundle') }}</div>
-        </div>
-    {% endif %}
-     
     <div id="wrapper" class="full lr-page span4 offset4">
-        
         <div class="row-fluid">
             <div id="login-form" class="span12">
                 <div class="page-title-small">
@@ -33,18 +27,23 @@
                 <div class="page-title-small">
                     <h3 style="background:#f0f0f0">或</h3>
                 </div>
-                <form method="post" action="{{ path('fos_user_security_check') }}" >
+                <form method="post" action="{{ path('check_login') }}" >
                 <div class="row-fluid">
                     <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
                     <input class="span12" id="user" name="_username" type="text" value="" placeholder="用户名" />
                     <input class="span12" id="pass" name="_password" type="password" value="" placeholder="密码" />
                 </div>
+                {% if error %}  
+                <div class="row-fluid">
+                    <div class="text-error">账号或密码错误</div>
+		</div>
+                {% endif %}
                 <div class="row-fluid">
                     <div class="remember">
                         <input id="remember" name="_remember_me" value="on" type="checkbox"  /> 记住我！
                     </div>
                     <div class="forgot">
-                        <a href="#">忘记密码？</a>
+                        <a href="{{ path('register') }}">注册</a>&nbsp;&nbsp;&nbsp;<a href="{{ path('fos_user_resetting_request') }}">忘记密码？</a>
                     </div>
                 </div>	
                 <div class="actions">

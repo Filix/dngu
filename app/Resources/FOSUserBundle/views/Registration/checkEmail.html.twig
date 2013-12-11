@@ -1,9 +1,9 @@
 {% extends "::base.html.twig" %}
-{% block title %}注册{% endblock title %}
+{% block title %}注册成功{% endblock title %}
 {% block page_title %}
 <div class="row-fluid">
     <div id="page-title" class="span4 offset4">
-        <h2>检查邮箱</h2>
+        <h2>注册成功</h2>
     </div>
 </div>
 {% endblock page_title %}
@@ -13,8 +13,10 @@
         <div class="row-fluid">
             <div id="login-form" class="span12">
                 <div class="page-title-small">
-                    <h3>激活邮件已发送到您的邮箱（{{ user.email }}）</h3>
+                    <h3>注册成功</h3>
                 </div>
+                <h3>激活邮件已发送到邮箱</h3>
+                <h3>请先激活你的账号，<a href="http://mail.{{ user.email}}" target="_blank">立即激活</a></h3>
             </div>
         </div>
     </div>

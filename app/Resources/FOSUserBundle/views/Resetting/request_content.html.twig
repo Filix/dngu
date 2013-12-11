@@ -1,15 +1,11 @@
-<div id="login-form" class="span12">
-    <div class="page-title-small">
-        <h3>填写您的邮箱或用户名</h3>
-    </div>
-    <form method="post" action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_registration_register">
+<form method="post" action="{{ path('fos_user_resetting_send_email') }}" >
     <div class="row-fluid">
-        <label for="username">邮箱或用户名</label>
-        <input type="text" id="username" name="username" required="required" />
+        <input class="span12" id="user" name="username" type="text" value="" placeholder="用户名或邮箱" />
+        {% if invalid_username is defined %}
+        <h3 class="text-error">不存在该用户名或邮箱</h3>
+        {% endif %}
     </div>
     <div class="actions">
-        <input type="submit" value="提交" />
+        <button type="submit" class="btn span12">找回密码</button>
     </div>
 </form>
-</div>
-
