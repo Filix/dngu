@@ -8,11 +8,9 @@ namespace Dngu\UserBundle\Util;
 
 use Dngu\UserBundle\Util\Libs\Weibo\Oauth;
 use Dngu\UserBundle\Util\Libs\Weibo\Client;
-//use Dngu\WebBundle\Entity\Oauth as OauthEntity;
+use Dngu\UserBundle\Entity\Oauth as OauthEntity;
 
-class WeiboOauthService {
-    
-   
+class WeiboOauthService extends BaseSnsService {
     /*
      * api操作类
      */
@@ -39,15 +37,13 @@ class WeiboOauthService {
     public function __construct(\Symfony\Bundle\FrameworkBundle\Routing\Router $router, Array $param) {
         $this->router = $router;
         $this->callback = $router->generate('weibo_callback', array(), true);
-        $this->param = $param;
-        var_dump($param);
-        exit;
-        $this->authorization = new Oauth($this->param['app_key'], $this->param['app_secret']);
+        $this->param = $param['weibo'];
+        $this->authorization = new Oauth($this->param['key'], $this->param['secret']);
     }
     
-    public function getClient(){
+    public function getClient($access_token){
         if(!$this->client){
-            $this->client = new Client($this->authorization);
+            $this->client = new Client($this->param['key'], $this->param['secret'], $access_token);
         }
         return $this->client;
     }
@@ -63,15 +59,19 @@ class WeiboOauthService {
         );
         $token = @$this->authorization->getAccessToken( 'code', $keys) ;
         if(isset($token['access_token'])){
-            $token['identity'] = $token['uid'];
-            $token['type'] = OauthEntity::WEIBO_TYPE;
-            return $token;
+            $t = array();
+            $t['access_token'] = $token['access_token'];
+            $t['expires_in'] = $token['expires_in'];
+            $t['uid'] = $token['uid'];
+            $t['data'] = $token;
+            $t['type'] = OauthEntity::WEIBO_TYPE;
+            return $t;
         }
         return array();
     }
     
     public function getUserInfo(OauthEntity $oauth){
-        $user = $this->getClient()->show_user_by_id($oauth->getIdentity());
+        $user = $this->getClient($oauth->getAccessToken())->show_user_by_id($oauth->getUid());
         $return = array();
         $return ['nickname'] = $user['name'];
         $return ['avatar'] = $user['profile_image_url'];
@@ -82,7 +82,6 @@ class WeiboOauthService {
             $sex = 1;
         }
         $return ['sex'] = $sex;
-        $return ['birthday'] = '';
         return $return;
     }
     

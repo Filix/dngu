@@ -8,6 +8,6 @@ class DefaultController extends Controller
 {
     public function indexAction($name)
     {
-        return $this->render('DnguWebBundle:Default:index.html.twig', array('name' => $name));
+        return new \Symfony\Component\HttpFoundation\Response('<h1>index page</h1>');
     }
 }

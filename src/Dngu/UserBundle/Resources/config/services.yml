@@ -4,4 +4,8 @@ parameters:
 services:
     dngu.weibo.oauth:
         class: Dngu\UserBundle\Util\WeiboOauthService
-        arguments: [@router, %oauth.weibo%]
+        arguments: [@router, %oauth%]
+        
+    dngu.tqq.oauth:
+        class: Dngu\UserBundle\Util\TqqOauthService
+        arguments: [@router, %oauth%]

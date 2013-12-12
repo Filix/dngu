@@ -10,5 +10,13 @@ parameters:
     mailer_host: 127.0.0.1
     mailer_user: null
     mailer_password: null
-    locale: en
+    locale: zh
     secret: ThisTokenIsNotSoSecretChangeIt
+
+    oauth:
+        weibo:
+            key: 777484125
+            secret: 8f5362e049e302245bcc838e56c70ad6
+        tqq:
+            key: 801455494
+            secret: 9395f469199e7fdf5d2f633b8146d57d

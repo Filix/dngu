@@ -17,4 +17,16 @@ weibo_login:
 weibo_callback:
     pattern:  /login/weibo_callback
     defaults: { _controller: DnguUserBundle:Login:weiboCallback }
+    
+tqq_login:
+    pattern:  /login/tqq
+    defaults: { _controller: DnguUserBundle:Login:tqqLogin }
+
+tqq_callback:
+    pattern:  /login/tqq_callback
+    defaults: { _controller: DnguUserBundle:Login:tqqCallback }
+    
+sns_register:
+    pattern:  /register/sns
+    defaults: { _controller: DnguUserBundle:Register:sns }
 

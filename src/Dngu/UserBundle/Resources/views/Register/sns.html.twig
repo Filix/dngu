@@ -1,0 +1,41 @@
+{% extends "::base.html.twig" %}
+{% block title %}注册{% endblock title %}
+{% block page_title %}
+<div class="row-fluid">
+    <div id="page-title" class="span4 offset4">
+        <h2>注册</h2>
+    </div>
+</div>
+{% endblock page_title %}
+{% block wrapper %}
+<div class="row-fluid">
+    <div id="wrapper" class="lr-page full span4 offset4">
+        <div class="row-fluid">
+            <div id="login-form" class="span12">
+                <form method="post" action="{{ path('sns_register', {'oauth': oauth}) }}" {{ form_enctype(form) }} method="POST" class="fos_user_registration_register">
+                    <div class="row-fluid">
+                        {{ form_widget(form._token) }}
+                        {{ form_widget(form.username, {'attr': {'class': 'span12', 'placeholder':'用户名', 'value': name } }) }}
+                        {{ form_errors(form.username) }}
+                        {{ form_widget(form.email, {'attr': {'class': 'span12', 'type': 'text', 'placeholder':'邮箱'} }) }}
+                        {{ form_errors(form.email) }}
+                        {{ form_widget(form.plainPassword.first, {'attr': {'class': 'span12', 'placeholder':'密码'} }) }}
+                        {{ form_errors(form.plainPassword.first) }}
+                        {{ form_widget(form.plainPassword.second, {'attr': {'class': 'span12', 'placeholder':'确认密码'} }) }}
+                        {{ form_errors(form.plainPassword.second) }}
+                    </div>
+                    <div class="actions">
+                        <input type="submit"  class="btn span12" value="注 册" />
+                    </div>
+                    <div class="row-fluid">
+                        <div class="forgot">
+                            <a href="{{ path('login') }}">已有账号？</a>
+                        </div>
+                    </div>	
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock wrapper %}

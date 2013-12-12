@@ -1,3 +1,6 @@
-dngu_web_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: DnguWebBundle:Default:index }
+index:
+    pattern:  /
+    defaults: { _controller: DnguWebBundle:Statics:index }
+homepage:
+    pattern:  /@{uid}
+    defaults: { _controller: DnguWebBundle:User:homepage }

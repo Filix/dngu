@@ -2,7 +2,7 @@
 
 namespace Dngu\UserBundle\Util\Libs\Weibo;
 
-use Dngu\UserBundle\Util\Lib\Weibo\OauthException;
+use Dngu\UserBundle\Util\Libs\Weibo\OauthException;
 
 class Oauth
 {
