@@ -1,8 +1,8 @@
 <?php
 
-namespace Dngu\WebBundle\Util;
+namespace Dngu\WebBundle\Util\CURD;
 
-abstract class CURDService
+abstract class BaseCURDService
 {
 
     public $parameters = array();
@@ -108,10 +108,4 @@ abstract class CURDService
     {
         
     }
-
-    protected abstract function doCreate($object);
-
-    protected abstract function doUpdate($object);
-
-    protected abstract function doDelete($object);
 }

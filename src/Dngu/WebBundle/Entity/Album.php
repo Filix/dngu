@@ -25,7 +25,7 @@ class Album
     protected $name;
     
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=100, nullable=true)
      */
     protected $description;
 
@@ -46,8 +46,8 @@ class Album
     protected $updated_at;
 
     /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="Albums", nullable=false)
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Dngu\UserBundle\Entity\User", inversedBy="Albums")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
      */
     protected $user;
     
