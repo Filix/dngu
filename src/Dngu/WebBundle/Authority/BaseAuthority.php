@@ -1,10 +1,11 @@
 <?php
 
-namespace Dngu\WebBundle\Util\Authority;
+namespace Dngu\WebBundle\Authority;
 
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
+use Dngu\UserBundle\Entity\User;
 
-abstract class BaseAuthorityService
+abstract class BaseAuthority
 {
 
     protected $container;
@@ -15,11 +16,25 @@ abstract class BaseAuthorityService
     public function __construct($container)
     {
         $this->container = $container;
+//        $this->setObject($object);
+//        $this->setOperator($operator);
+        $this->configure();
     }
+    
+    public function configure()
+    {
+        
+    }
+    
 
     public function setObject($object)
     {
         $this->object = $object;
+    }
+    
+    public function setOperator(User $user)
+    {
+        $this->operator = $user;
     }
 
     public function hasAuthority($action)
@@ -28,7 +43,7 @@ abstract class BaseAuthorityService
             throw new AccessDeniedHttpException('没有权限进行此操作，操作仅限：' . implode(',', $this->operations));
         }
         $action = 'has' . ucfirst($action) . 'Authority';
-        return $this->$action;
+        return $this->$action();
     }
 
     abstract function hasCreateAuthority();

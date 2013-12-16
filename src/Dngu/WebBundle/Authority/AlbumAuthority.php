@@ -1,10 +1,10 @@
 <?php
 
-namespace Dngu\WebBundle\Util\Authority;
+namespace Dngu\WebBundle\Authority;
 
 use Dngu\WebBundle\Entity\Album;
 
-class AlbumAuthorityService extends BaseAuthorityService
+class AlbumAuthority extends BaseAuthority
 {
     public function hasCreateAuthority()
     {
@@ -21,8 +21,11 @@ class AlbumAuthorityService extends BaseAuthorityService
         return true;
     }
 
-    public function setObject(Album $object)
+    public function setObject($object)
     {
+        if(!$object instanceof Album){
+            throw new Exception('You must give a Album Object');
+        }
         parent::setObject($object);
     }
 }

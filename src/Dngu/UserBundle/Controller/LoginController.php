@@ -11,6 +11,7 @@ class LoginController extends SecurityController
 
     public function weiboLoginAction()
     {
+        $v = $this->container->get('validator');
         $url = $this->container->get('dngu.weibo.oauth')->getAuthorizeURL();
         return new RedirectResponse($url);
     }

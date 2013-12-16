@@ -1,5 +1,7 @@
 <?php
+
 namespace Dngu\WebBundle\Controller;
+
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class BaseController extends Controller
@@ -7,10 +9,11 @@ class BaseController extends Controller
     /*
      * 
      */
-    protected function getContainer(){
+
+    protected function getContainer()
+    {
         return $this->container;
     }
-
 
     /**
      * 
@@ -19,6 +22,7 @@ class BaseController extends Controller
     {
         return $this->getContainer()->get('router');
     }
+
     /**
      * @param string $action
      * @param string $value
@@ -27,7 +31,7 @@ class BaseController extends Controller
     {
         $this->getFlash()->set($action, $value);
     }
-    
+
     /**
      * @return FlashBagInterface
      */
@@ -35,4 +39,10 @@ class BaseController extends Controller
     {
         return $this->getContainer()->get('session')->getFlashBag();
     }
+    
+    protected function getAlbumRepository()
+    {
+        return $this->getDoctrine()->getRepository('DnguWebBundle:Album');
+    }
+
 }

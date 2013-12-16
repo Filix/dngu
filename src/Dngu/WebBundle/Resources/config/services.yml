@@ -6,3 +6,8 @@ services:
         class: Dngu\WebBundle\Twig\TwigExtension
         tags:
             - { name: twig.extension }
+            
+    ablum_process:
+        class: Dngu\WebBundle\Util\EntityProcess\AlbumEntityProcess
+        arguments: [@service_container]
+        
