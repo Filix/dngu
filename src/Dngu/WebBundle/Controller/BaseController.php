@@ -40,6 +40,12 @@ class BaseController extends Controller
         return $this->getContainer()->get('session')->getFlashBag();
     }
     
+    protected function getDoctrineManager()
+    {
+        return $this->getDoctrine()->getManager();
+    }
+
+
     protected function getAlbumRepository()
     {
         return $this->getDoctrine()->getRepository('DnguWebBundle:Album');

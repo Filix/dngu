@@ -185,10 +185,10 @@ class Album
     /**
      * Set user
      *
-     * @param \Dngu\WebBundle\Entity\User $user
+     * @param \Dngu\UserBundle\Entity\User $user
      * @return Album
      */
-    public function setUser(\Dngu\WebBundle\Entity\User $user = null)
+    public function setUser(\Dngu\UserBundle\Entity\User $user = null)
     {
         $this->user = $user;
     
@@ -198,7 +198,7 @@ class Album
     /**
      * Get user
      *
-     * @return \Dngu\WebBundle\Entity\User 
+     * @return \Dngu\UserBundle\Entity\User 
      */
     public function getUser()
     {

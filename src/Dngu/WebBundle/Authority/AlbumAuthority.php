@@ -24,7 +24,7 @@ class AlbumAuthority extends BaseAuthority
     public function setObject($object)
     {
         if(!$object instanceof Album){
-            throw new Exception('You must give a Album Object');
+            throw new \Exception('You must give a Album Object');
         }
         parent::setObject($object);
     }

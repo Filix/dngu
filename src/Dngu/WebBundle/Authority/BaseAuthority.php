@@ -26,7 +26,12 @@ abstract class BaseAuthority
         
     }
     
-
+    public function addOperation($operation){
+//        if(!in_array($operation, $this->operations)){
+//            $this->operations[] = $operation;
+//        }
+    }
+    
     public function setObject($object)
     {
         $this->object = $object;
