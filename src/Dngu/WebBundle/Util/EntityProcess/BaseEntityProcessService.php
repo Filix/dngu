@@ -9,6 +9,11 @@ abstract class BaseEntityProcessService
 {
 
     protected $container;
+    
+    /*
+     * Doctrine Manager
+     */
+    protected $dm;
 
     /*
      * Dngu\WebBundle\Validator
@@ -16,21 +21,33 @@ abstract class BaseEntityProcessService
     protected $validator;
 
     /*
-     * 
+     * Dngu\WebBundle\Authority
      */
     protected $authority;
     protected $parameters;
+    
+    protected $errors = array();
 
     public function __construct($container)
     {
         $this->container = $container;
-        $this->configure();
-    }
-
-    public function configure()
-    {
+        $this->dm = $this->getContainer()->get('doctrine')->getManager();
         $this->setValidator();
         $this->setAuthority();
+    }
+
+    public function init()
+    {
+        
+    }
+
+    public function getContainer()
+    {
+        return $this->container;
+    }
+    
+    public function getDoctrineManager(){
+        return $this->dm;
     }
 
     public function setParameters(array $parameters)
@@ -42,31 +59,53 @@ abstract class BaseEntityProcessService
     {
         return isset($this->parameters[$key]) ? $this->parameters[$key] : $default;
     }
-    
+
     abstract function setValidator();
 
     protected abstract function setAuthority();
 
     public function work($action)
     {
-        if(!$this->validator->validator()){
-            
+        $this->init();
+        if (!$this->validator->validate()) {
+            $this->setErrors($this->validator->getErrors());
+            return false;
         }
         if (!$this->authority->hasAuthority($action)) {
-            throw new AccessDeniedHttpException('没有权限进行此操作');
+            $this->addError('没有权限进行此操作');
+            return false;
         }
-        $pre_action = 'pre' . ucfirst($action) . 'Work';
-        if(method_exists($this, $pre_action)){
-            $this->$pre_action();
+        $pre_action = 'pre' . ucfirst($action);
+        if (method_exists($this, $pre_action)) {
+            if(!$this->$pre_action()){
+                return false;
+            }
         }
-        $do_action = 'do' . ucfirst($action) . 'Work';
-        if(!method_exists($this, $do_action)){
-            throw new \Exception('你必须定义一个' . $do_action.'()方法');
+        $do_action = 'do' . ucfirst($action);
+        if (!method_exists($this, $do_action)) {
+            throw new \Exception('你必须定义一个' . $do_action . '()方法');
         }
-        $this->$do_action();
-        $post_action = 'post' . ucfirst($action) . 'Work';
-        if(method_exists($this, $post_action)){
-            $this->$post_action();
+        if(!$this->$do_action()){
+            return false;
         }
+        $post_action = 'post' . ucfirst($action);
+        if (method_exists($this, $post_action)) {
+            if(!$this->$post_action()){
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    public function getErrors(){
+        return $this->errors;
+    }
+    
+    public function setErrors(array $errors){
+        $this->errors = $errors;
+    }
+    
+    public function addError($error){
+        $this->errors[] = $error;
     }
 }

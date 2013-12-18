@@ -12,4 +12,15 @@ use Doctrine\ORM\EntityRepository;
  */
 class AlbumRepository extends EntityRepository
 {
+
+    public function getUserAlbumsQuery($user)
+    {
+        return $this->getEntityManager()
+                        ->createQueryBuilder()
+                        ->from('DnguWebBundle:Album', 'a')
+                        ->where('a.user = :user')
+                        ->getQuery()
+                        ->setParameter('user', $user);
+    }
+
 }

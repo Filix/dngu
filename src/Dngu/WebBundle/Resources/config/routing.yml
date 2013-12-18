@@ -4,3 +4,8 @@ index:
 homepage:
     pattern:  /@{uid}
     defaults: { _controller: DnguWebBundle:User:homepage }
+    
+#album
+album_list:
+    pattern: /@{uid}/album/{page}
+    defaults: { _controller: DnguWebBundle:Album:list, page: 1 }

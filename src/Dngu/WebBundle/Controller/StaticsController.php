@@ -8,22 +8,19 @@ class StaticsController extends BaseController
 {
     public function indexAction()
     {
-        $process = $this->get('ablum_process');
-        $album = $this->getAlbumRepository()->find(1);
-        if(!$album){
-            $album = new \Dngu\WebBundle\Entity\Album();
-            $album->setName(\Dngu\WebBundle\Entity\Album::DIARY_ALBUM_NAME);
-            $album->setDescription('...');
-            $album->setIsDelete(false);
-            $album->setIsSystem(false);
-            $album->setUser($this->getUser());
-            $album->setUpdatedAt(new \DateTime);
-            $dm = $this->getDoctrineManager();
-            $dm->persist($album);
-            $dm->flush();
-        }
+        $process = $this->get('album_process');
+        $album = new \Dngu\WebBundle\Entity\Album();
+        $album->setDescription('...dddd');
+        $album->setName(\Dngu\WebBundle\Entity\Album::DIARY_ALBUM_NAME);
+        $album->setUser($this->getUser());
         $process->setParameters(array('album' => $album, 'operator' => $this->getUser()));
-        $process->work('create');
-        return new \Symfony\Component\HttpFoundation\Response('<h1>index page</h1>');
+        $process->init();
+        $result = $process->work('create');
+        if($result){
+            return new \Symfony\Component\HttpFoundation\Response('<h1>success</h1>');
+        }else{
+            ldd($process->getErrors());
+        }
+        return new \Symfony\Component\HttpFoundation\Response('<h1>success</h1>');
     }
 }

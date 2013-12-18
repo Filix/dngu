@@ -11,19 +11,21 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Album
 {
+
     const DIARY_ALBUM_NAME = '日志相册';
+
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
-    
+
     /**
      * @ORM\Column(type="string", length=20)
      */
     protected $name;
-    
+
     /**
      * @ORM\Column(type="string", length=100, nullable=true)
      */
@@ -33,12 +35,11 @@ class Album
      * @ORM\Column(type="boolean")
      */
     protected $is_system = false;
-    
+
     /**
      * @ORM\Column(type="boolean")
      */
     protected $is_delete = false;
-
 
     /**
      * @ORM\Column(type="datetime")
@@ -50,13 +51,18 @@ class Album
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
      */
     protected $user;
-    
+
     /**
      * @ORM\ManyToOne(targetEntity="Statistics", inversedBy="Statistics")
-     * @ORM\JoinColumn(name="statistics_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="statistics_id", referencedColumnName="id", nullable=false)
      */
     protected $statistics;
 
+    public function __construct()
+    {
+        $this->updated_at = new \DateTime;
+    }
+    
     /**
      * Get id
      *
@@ -76,7 +82,7 @@ class Album
     public function setName($name)
     {
         $this->name = $name;
-    
+
         return $this;
     }
 
@@ -99,7 +105,7 @@ class Album
     public function setDescription($description)
     {
         $this->description = $description;
-    
+
         return $this;
     }
 
@@ -122,7 +128,7 @@ class Album
     public function setIsSystem($isSystem)
     {
         $this->is_system = $isSystem;
-    
+
         return $this;
     }
 
@@ -145,7 +151,7 @@ class Album
     public function setIsDelete($isDelete)
     {
         $this->is_delete = $isDelete;
-    
+
         return $this;
     }
 
@@ -168,7 +174,7 @@ class Album
     public function setUpdatedAt($updatedAt)
     {
         $this->updated_at = $updatedAt;
-    
+
         return $this;
     }
 
@@ -191,7 +197,7 @@ class Album
     public function setUser(\Dngu\UserBundle\Entity\User $user = null)
     {
         $this->user = $user;
-    
+
         return $this;
     }
 
@@ -214,7 +220,7 @@ class Album
     public function setStatistics(\Dngu\WebBundle\Entity\Statistics $statistics = null)
     {
         $this->statistics = $statistics;
-    
+
         return $this;
     }
 
@@ -227,4 +233,5 @@ class Album
     {
         return $this->statistics;
     }
+
 }

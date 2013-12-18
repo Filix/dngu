@@ -13,12 +13,12 @@ class AlbumAuthority extends BaseAuthority
 
     public function hasDeleteAuthority()
     {
-        return false;
+        return $this->getObject()->getUser()->getId() == $this->getOperator()->getId() ? true : false;
     }
 
     public function hasUpdateAuthority()
     {
-        return true;
+        return $this->getObject()->getUser()->getId() == $this->getOperator()->getId() ? true : false;
     }
 
     public function setObject($object)

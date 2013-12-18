@@ -1,0 +1,13 @@
+Dngu\WebBundle\Entity\Album:
+    properties:
+        name:
+            - NotBlank: 
+                message: 相册名称不能为空
+            - Length: 
+                max: 20
+                maxMessage: 相册名称长度大于{{ limit }}个字
+        description:
+           - Length:
+               max: 100
+               maxMessage: 相册名称长度大于{{ limit }}个字
+        

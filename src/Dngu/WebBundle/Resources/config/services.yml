@@ -7,7 +7,15 @@ services:
         tags:
             - { name: twig.extension }
             
-    ablum_process:
+    album_process:
         class: Dngu\WebBundle\Util\EntityProcess\AlbumEntityProcess
+        arguments: [@service_container]
+        
+    statistics_process:
+        class: Dngu\WebBundle\Util\EntityProcess\StatisticsEntityProcess
+        arguments: [@service_container]
+        
+    entity_validator:
+        class: Dngu\WebBundle\Validator\EntityValidator
         arguments: [@service_container]
         

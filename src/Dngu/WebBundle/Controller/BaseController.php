@@ -46,6 +46,11 @@ class BaseController extends Controller
     }
 
 
+    protected function getUserRepository()
+    {
+        return $this->getDoctrine()->getRepository('DnguUserBundle:User');
+    }
+    
     protected function getAlbumRepository()
     {
         return $this->getDoctrine()->getRepository('DnguWebBundle:Album');

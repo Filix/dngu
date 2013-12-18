@@ -28,7 +28,7 @@ class Statistics
     protected $type;
     
     /**
-     * @ORM\Column(type="integer", nullable=false)
+     * @ORM\Column(type="integer", nullable=true)
      */
     protected $object_id;
     
@@ -41,13 +41,16 @@ class Statistics
      * @ORM\Column(type="smallint")
      */
     protected $like_count = 0;
+    
     /**
      * @ORM\Column(type="smallint")
      */
     protected $picture_count = 0;
-
-
     
+    /**
+     * @ORM\Column(type="smallint")
+     */
+    protected $view_count = 0;
 
     /**
      * Get id
@@ -172,5 +175,28 @@ class Statistics
     public function getPictureCount()
     {
         return $this->picture_count;
+    }
+
+    /**
+     * Set view_count
+     *
+     * @param integer $viewCount
+     * @return Statistics
+     */
+    public function setViewCount($viewCount)
+    {
+        $this->view_count = $viewCount;
+    
+        return $this;
+    }
+
+    /**
+     * Get view_count
+     *
+     * @return integer 
+     */
+    public function getViewCount()
+    {
+        return $this->view_count;
     }
 }

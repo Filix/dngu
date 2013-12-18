@@ -16,30 +16,32 @@ abstract class BaseAuthority
     public function __construct($container)
     {
         $this->container = $container;
-//        $this->setObject($object);
-//        $this->setOperator($operator);
         $this->configure();
     }
-    
+
     public function configure()
     {
         
     }
-    
-    public function addOperation($operation){
-//        if(!in_array($operation, $this->operations)){
-//            $this->operations[] = $operation;
-//        }
-    }
-    
+
     public function setObject($object)
     {
         $this->object = $object;
     }
-    
+
+    public function getObject()
+    {
+        return $this->object;
+    }
+
     public function setOperator(User $user)
     {
         $this->operator = $user;
+    }
+
+    public function getOperator()
+    {
+        return $this->operator;
     }
 
     public function hasAuthority($action)
