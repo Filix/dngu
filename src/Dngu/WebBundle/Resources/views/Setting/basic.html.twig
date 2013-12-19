@@ -1,0 +1,100 @@
+{% extends "::base.html.twig" %}
+{% block title %}基本设置{% endblock title %}
+{% block page_title %}
+<div id="page-title">
+    <h2>基本设置</h2>
+</div>
+{% endblock page_title %}
+
+{% block wrapper %}
+<div id="wrapper">
+    <div class="row-fluid">
+        {% include "DnguWebBundle:setting:_menu.html.twig" %}
+        <div class="sidebar span8 offset1">
+            <!-- start: Text Widget -->
+            <div class="widget first">
+                <h3>基本设置</h3>
+            </div>
+            <!-- end: Text Widget -->
+            <div class="widget">
+                <form action="" method="post">
+                    <h4>用户名</h4>
+                    <input type="text" name="username" value="" class="row-fluid" /> 
+                    <h4>头像</h4>
+                    <img src="img/car.jpg" width="100" height="100" /> 
+                    <h4>性别</h4>
+                    <input type="radio" name="sex" value="女" /> 女<input type="radio" name="sex" value="男" />男 
+                    <h4>生日</h4>
+                    <input type="text" name="birthday" value=""  class="row-fluid"  /> 
+                    <h4>邮箱</h4>
+                    <input type="text" name="email" value=""  class="row-fluid"  /> 
+                    <div class="actions">
+                        <div class="btn-overlay"><button tabindex="5" type="submit" class="btn">
+                                <span>确认提交</span></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="widget">
+                <form action="" method="post">
+                    <h4>所患疾病</h4>
+                    <select></select>
+                    <h4>获疾时间</h4>
+                    <input type="text" name="birthday" value=""  class="row-fluid"  /> 
+                    <h4>病症程度</h4>
+                    <input type="radio" name="sex" value="" /> 轻度
+                    <input type="radio" name="sex" value="" /> 中度
+                    <input type="radio" name="sex" value="" /> 重度 
+                    <div class="actions">
+                        <div class="btn-overlay"><button tabindex="5" type="submit" class="btn">
+                                <span>确认提交</span></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="widget">
+                <form action="" method="post">
+                    <h4>个性域名</h4>
+                    <input type="text" name="username" value="" class="row-fluid" /> 
+                    <h4>签名档</h4>
+                    <input type="text" name="birthday" value=""  class="row-fluid"  /> 
+                    <h4>自我介绍</h4>
+                    <textarea></textarea>
+                    <div class="actions">
+                        <div class="btn-overlay"><button tabindex="5" type="submit" class="btn">
+                                <span>确认提交</span></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="widget">
+                <form action="" method="post">
+                    <h4>旧密码</h4>
+                    <input type="text" name="username" value="" class="row-fluid" /> 
+                    <h4>新密码</h4>
+                    <input type="text" name="birthday" value=""  class="row-fluid"  /> 
+                    <h4>重复密码</h4>
+                    <input type="text" name="email" value=""  class="row-fluid"  /> 
+                    <div class="actions">
+                        <div class="btn-overlay"><button tabindex="5" type="submit" class="btn">
+                                <span>确认提交</span></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="widget">
+                <div class="row-fluid">
+                    <div class="span3">
+                        <img src="img/car.jpg" />
+                        <h4>新浪微博</h4>
+                    </div>
+                    <div class="span3 offset1">
+                        <img src="img/car.jpg" />
+                        <h4>新浪微博</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock wrapper %}

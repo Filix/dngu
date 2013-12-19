@@ -78,7 +78,9 @@ h6 {
   font-size: 11px;
   line-height: 24px;
 }
-
+.main-content{
+        margin-bottom: 50px;
+}
 hr {
 	position: relative;
   	margin: 20px 0;

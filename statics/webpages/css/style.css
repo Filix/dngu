@@ -86,7 +86,9 @@ hr {
   	border: none;
 	height: 2px;
 }
-
+.main-content{
+	margin-bottom: 50px;
+}
 hr:before,
 hr:after {
 	content: "";

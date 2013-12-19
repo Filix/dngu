@@ -21,7 +21,9 @@
         "incenteev/composer-parameter-handler": "~2.0",
         "friendsofsymfony/user-bundle": "*",
         "raulfraile/ladybug-bundle": "0.7",
-        "knplabs/knp-paginator-bundle": "dev-master"
+        "knplabs/knp-paginator-bundle": "~2.3@dev",
+        "knplabs/knp-components": "~1.2@dev",
+        "jms/security-extra-bundle": "1.2.*"
     },
     "scripts": {
         "post-install-cmd": [
