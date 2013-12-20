@@ -39,8 +39,13 @@ class Album
     /**
      * @ORM\Column(type="boolean")
      */
-    protected $is_delete = false;
+    protected $is_deleted = false;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    protected $created_at;
+    
     /**
      * @ORM\Column(type="datetime")
      */
@@ -57,6 +62,11 @@ class Album
      * @ORM\JoinColumn(name="statistics_id", referencedColumnName="id", nullable=false)
      */
     protected $statistics;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Picture", mappedBy="album")
+     */
+    protected $pictures;
 
     public function __construct()
     {
@@ -143,29 +153,6 @@ class Album
     }
 
     /**
-     * Set is_delete
-     *
-     * @param boolean $isDelete
-     * @return Album
-     */
-    public function setIsDelete($isDelete)
-    {
-        $this->is_delete = $isDelete;
-
-        return $this;
-    }
-
-    /**
-     * Get is_delete
-     *
-     * @return boolean 
-     */
-    public function getIsDelete()
-    {
-        return $this->is_delete;
-    }
-
-    /**
      * Set updated_at
      *
      * @param \DateTime $updatedAt
@@ -233,5 +220,63 @@ class Album
     {
         return $this->statistics;
     }
+    
+    public function getCommentCount(){
+        return $this->getStatistics() ? $this->getStatistics()->getCommentCount() : 0;
+    }
+    
+    public function getLikeCount(){
+        return $this->getStatistics() ? $this->getStatistics()->getLikeCount() : 0;
+    }
+    
+    public function getPictureCount(){
+        return $this->getStatistics() ? $this->getStatistics()->getPictureCount() : 0;
+    }
 
+
+    /**
+     * Set is_deleted
+     *
+     * @param boolean $isDeleted
+     * @return Album
+     */
+    public function setIsDeleted($isDeleted)
+    {
+        $this->is_deleted = $isDeleted;
+    
+        return $this;
+    }
+
+    /**
+     * Get is_deleted
+     *
+     * @return boolean 
+     */
+    public function getIsDeleted()
+    {
+        return $this->is_deleted;
+    }
+
+    /**
+     * Set created_at
+     *
+     * @param \DateTime $createdAt
+     * @return Album
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->created_at = $createdAt;
+    
+        return $this;
+    }
+
+    /**
+     * Get created_at
+     *
+     * @return \DateTime 
+     */
+    public function getCreatedAt()
+    {
+        return $this->created_at;
+    }
 }

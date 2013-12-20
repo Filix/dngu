@@ -55,5 +55,10 @@ class BaseController extends Controller
     {
         return $this->getDoctrine()->getRepository('DnguWebBundle:Album');
     }
+    
+    protected function getPictureRepository()
+    {
+        return $this->getDoctrine()->getRepository('DnguWebBundle:Picture');
+    }
 
 }

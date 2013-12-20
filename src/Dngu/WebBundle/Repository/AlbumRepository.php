@@ -17,6 +17,7 @@ class AlbumRepository extends EntityRepository
     {
         return $this->getEntityManager()
                         ->createQueryBuilder()
+                        ->select('a')
                         ->from('DnguWebBundle:Album', 'a')
                         ->where('a.user = :user')
                         ->getQuery()

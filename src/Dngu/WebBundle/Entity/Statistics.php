@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity
  * @ORM\Table(name="statistics")
- * @ORM\Entity(repositoryClass="Dngu\WebBundle\Repository\AlbumRepository")
+ * @ORM\Entity(repositoryClass="Dngu\WebBundle\Repository\StatisticsRepository")
  */
 class Statistics
 {

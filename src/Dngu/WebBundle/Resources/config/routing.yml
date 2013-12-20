@@ -7,7 +7,10 @@ homepage:
     
 #album
 album_list:
-    pattern: /@{uid}/album/{page}
+    pattern: /@{uid}/albums/{page}
+    defaults: { _controller: DnguWebBundle:Album:list, page: 1 }
+album_detail:
+    pattern: /@{uid}/album/{id}/{page}
     defaults: { _controller: DnguWebBundle:Album:list, page: 1 }
     
     

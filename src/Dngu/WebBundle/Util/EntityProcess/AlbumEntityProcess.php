@@ -46,6 +46,7 @@ class AlbumEntityProcess extends BaseEntityProcessService
         $this->getDoctrineManager()->flush();
         $album =  $this->getParameter('album');
         $album->setStatistics($statistics);
+        $album->setCreatedAt(new \DateTime());
         $this->getDoctrineManager()->persist($album);
         $this->getDoctrineManager()->flush();
         $statistics->setObjectId($album->getId());
