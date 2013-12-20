@@ -11,6 +11,10 @@ class LoginController extends SecurityController
 
     public function weiboLoginAction()
     {
+//        if($this->container->get('security.context')->isGranted('ROLE_USER')){
+//            $url = $this->container->get('router')->generate('homepage', array('uid' => $this->container->get('security.context')->getToken()->getUser()->getId()));
+//            return new RedirectResponse($url);
+//        }
         $v = $this->container->get('validator');
         $url = $this->container->get('dngu.weibo.oauth')->getAuthorizeURL();
         return new RedirectResponse($url);
@@ -53,12 +57,12 @@ class LoginController extends SecurityController
             }else{
                 $user = $oauth->getUser();
                 $oauth->update($token);
+                $em->flush();
                 $this->container->get('fos_user.security.login_manager')
                         ->loginUser(
                          $this->container->getParameter('fos_user.firewall_name'), 
                          $user
                 );
-                $em->flush();
                 return new RedirectResponse($this->container->get('router')->generate('homepage', array('uid' => $user->getId())));
             }
         } else {

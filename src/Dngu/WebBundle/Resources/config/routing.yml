@@ -12,26 +12,20 @@ album_list:
 album_detail:
     pattern: /@{uid}/album/{id}/{page}
     defaults: { _controller: DnguWebBundle:Album:list, page: 1 }
-    
-    
-    
+
 #setting
 setting_basic:
     pattern: /setting/basic
     defaults: { _controller: DnguWebBundle:Setting:basic }
-
 setting_case:
     pattern: /setting/case
     defaults: { _controller: DnguWebBundle:Setting:case }
-    
 setting_personality:
     pattern: /setting/personality
     defaults: { _controller: DnguWebBundle:Setting:personality }
-    
 setting_passport:
     pattern: /setting/passport
     defaults: { _controller: DnguWebBundle:Setting:passport }
-    
 setting_bind:
     pattern: /setting/bind
     defaults: { _controller: DnguWebBundle:Setting:bind }

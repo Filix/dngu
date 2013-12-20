@@ -2,11 +2,13 @@
 namespace Dngu\WebBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use JMS\SecurityExtraBundle\Annotation\Secure;
 
 class SettingController extends BaseController
 {
     /**
      * 基本设置
+     * @Secure(roles="ROLE_USER")
      * @Template()
      */
     public function basicAction(){
@@ -15,6 +17,7 @@ class SettingController extends BaseController
     
     /**
      * 病历设置
+     * @Secure(roles="ROLE_USER")
      * @Template()
      */
     public function caseAction(){
@@ -23,6 +26,7 @@ class SettingController extends BaseController
     
     /**
      * 个性设置
+     * @Secure(roles="ROLE_USER")
      * @Template()
      */
     public function personalityAction(){
@@ -31,6 +35,7 @@ class SettingController extends BaseController
     
     /**
      * 密码设置
+     * @Secure(roles="ROLE_USER")
      * @Template()
      */
     public function passportAction(){
@@ -39,6 +44,7 @@ class SettingController extends BaseController
     
     /**
      * 绑定设置
+     * @Secure(roles="ROLE_USER")
      * @Template()
      */
     public function bindAction(){
