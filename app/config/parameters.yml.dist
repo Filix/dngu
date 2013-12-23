@@ -15,8 +15,8 @@ parameters:
 
     oauth:
         weibo:
-            key: 777484125
-            secret: 8f5362e049e302245bcc838e56c70ad6
+            key: 1627873774
+            secret: 7f84b1009ef8d2576461126e4d8fe06d
         tqq:
             key: 801455494
             secret: 9395f469199e7fdf5d2f633b8146d57d
