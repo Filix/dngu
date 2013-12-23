@@ -2,12 +2,26 @@
 
 namespace Dngu\WebBundle\Twig;
 
+use Dngu\UserBundle\Entity\User;
+
 class TwigExtension extends \Twig_Extension{
     
+    protected $container;
+
+    public function __construct($container)
+    {
+        $this->container = $container;
+    }
     public function getFilters()
     {
         return array(
             new \Twig_SimpleFilter('mailhost', array($this, 'mailhostFilter')),
+        );
+    }
+    
+    public function getFunctions(){
+        return array(
+            'user_home' => new \Twig_Function_Method($this, 'getUserHomeUrl'),
         );
     }
 
@@ -20,6 +34,10 @@ class TwigExtension extends \Twig_Extension{
     public function getName() 
     {
         return 'web_twig_extension';
+    }
+    
+    public function getUserHomeUrl(User $user, $absolute = false){
+        return $this->container->get('dngu.user.router')->getHomeUrl($user, $absolute);
     }
 
 }

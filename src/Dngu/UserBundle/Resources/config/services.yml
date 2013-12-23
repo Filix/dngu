@@ -9,3 +9,5 @@ services:
     dngu.tqq.oauth:
         class: Dngu\UserBundle\Util\TqqOauthService
         arguments: [@router, %oauth%]
+        
+   

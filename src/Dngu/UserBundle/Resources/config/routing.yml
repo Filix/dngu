@@ -27,6 +27,12 @@ tqq_callback:
     defaults: { _controller: DnguUserBundle:Login:tqqCallback }
     
 sns_register:
-    pattern:  /register/sns
+    pattern:  /register/sns/{oauth}
     defaults: { _controller: DnguUserBundle:Register:sns }
+    
+register_complete:
+    pattern:  /register/complete/{user_id}/{oauth_id}
+    defaults: { _controller: DnguUserBundle:Register:complete }
+    
+    
 

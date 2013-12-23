@@ -51,7 +51,7 @@ class Picture
      * @ORM\ManyToOne(targetEntity="Album", inversedBy="Album")
      * @ORM\JoinColumn(name="album_id", referencedColumnName="id", nullable=false)
      */
-    protected $statistics;
+    protected $album;
 
     /**
      * Get id

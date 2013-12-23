@@ -11,10 +11,10 @@ class LoginController extends SecurityController
 
     public function weiboLoginAction()
     {
-//        if($this->container->get('security.context')->isGranted('ROLE_USER')){
-//            $url = $this->container->get('router')->generate('homepage', array('uid' => $this->container->get('security.context')->getToken()->getUser()->getId()));
-//            return new RedirectResponse($url);
-//        }
+        if($this->container->get('security.context')->isGranted('ROLE_USER')){
+            $url = $this->container->get('dngu.user.router')->getHomeUrl($this->container->get('security.context')->getToken()->getUser());
+            return new RedirectResponse($url);
+        }
         $v = $this->container->get('validator');
         $url = $this->container->get('dngu.weibo.oauth')->getAuthorizeURL();
         return new RedirectResponse($url);
@@ -29,6 +29,10 @@ class LoginController extends SecurityController
     
     public function tqqLoginAction()
     {
+        if($this->container->get('security.context')->isGranted('ROLE_USER')){
+            $url = $this->container->get('dngu.user.router')->getHomeUrl($this->container->get('security.context')->getToken()->getUser());
+            return new RedirectResponse($url);
+        }
         $url = $this->container->get('dngu.tqq.oauth')->getAuthorizeURL();
         return new RedirectResponse($url);
     }
@@ -53,17 +57,21 @@ class LoginController extends SecurityController
                     $em->persist($oauth);
                     $em->flush();
                 }
-                return new RedirectResponse($this->container->get('router')->generate('weibo_register', array('oauth' => $oauth->getId())));
+                return new RedirectResponse($this->container->get('router')->generate('sns_register', array('oauth' => $oauth->getId())));
             }else{
                 $user = $oauth->getUser();
                 $oauth->update($token);
                 $em->flush();
+                if(!$user->isEnabled()){
+                    //邮箱未认证，重新填写用户信息
+                     return new RedirectResponse($this->container->get('router')->generate('register_complete', array('user_id' => $user->getId(), 'oauth_id'=>$oauth->getId())));
+                }
                 $this->container->get('fos_user.security.login_manager')
                         ->loginUser(
                          $this->container->getParameter('fos_user.firewall_name'), 
                          $user
                 );
-                return new RedirectResponse($this->container->get('router')->generate('homepage', array('uid' => $user->getId())));
+                return new RedirectResponse($this->container->get('dngu.user.router')->getHomeUrl($user));
             }
         } else {
             exit('认证失败，请重新尝试');

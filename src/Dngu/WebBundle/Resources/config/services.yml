@@ -4,6 +4,7 @@ parameters:
 services:
     twig_extension:
         class: Dngu\WebBundle\Twig\TwigExtension
+        arguments: [@service_container]
         tags:
             - { name: twig.extension }
             
@@ -18,4 +19,8 @@ services:
     entity_validator:
         class: Dngu\WebBundle\Validator\EntityValidator
         arguments: [@service_container]
+        
+    dngu.user.router:
+        class: Dngu\WebBundle\Util\UserRouterService
+        arguments: [@router]
         
