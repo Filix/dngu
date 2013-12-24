@@ -8,6 +8,15 @@ use Dngu\UserBundle\Entity\Oauth;
 
 class LoginController extends SecurityController
 {
+    
+    public function loginAction()
+    {
+        if($this->container->get('security.context')->isGranted('ROLE_USER')){
+            $url = $this->container->get('dngu.user.router')->getHomeUrl($this->container->get('security.context')->getToken()->getUser());
+            return new RedirectResponse($url);
+        }
+        return parent::loginAction();
+    }
 
     public function weiboLoginAction()
     {
@@ -15,7 +24,6 @@ class LoginController extends SecurityController
             $url = $this->container->get('dngu.user.router')->getHomeUrl($this->container->get('security.context')->getToken()->getUser());
             return new RedirectResponse($url);
         }
-        $v = $this->container->get('validator');
         $url = $this->container->get('dngu.weibo.oauth')->getAuthorizeURL();
         return new RedirectResponse($url);
     }

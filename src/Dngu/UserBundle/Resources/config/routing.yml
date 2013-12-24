@@ -5,6 +5,10 @@ login:
 register:
     pattern:  /register
     defaults: { _controller: DnguUserBundle:Register:register }
+    
+#register_confirm:
+#    pattern:  /register/confirm/{token}
+#    defaults: { _controller: DnguUserBundle:Register:register }
 
 check_login:
     pattern:  /logincheck
