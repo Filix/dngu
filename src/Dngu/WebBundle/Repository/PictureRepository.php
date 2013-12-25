@@ -11,7 +11,7 @@ class PictureRepository extends EntityRepository
     {
         return $this->getEntityManager()
                         ->createQueryBuilder()
-                        ->select('a')
+                        ->select('p')
                         ->from('DnguWebBundle:Picture', 'p')
                         ->where('p.album = :album')
                         ->andWhere('p.is_deleted = 0')

@@ -57,13 +57,13 @@ class Album
     protected $updated_at;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Dngu\UserBundle\Entity\User", inversedBy="Albums")
+     * @ORM\ManyToOne(targetEntity="Dngu\UserBundle\Entity\User", inversedBy="albums")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
      */
     protected $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Statistics", inversedBy="Statistics")
+     * @ORM\ManyToOne(targetEntity="Statistics")
      * @ORM\JoinColumn(name="statistics_id", referencedColumnName="id", nullable=false)
      */
     protected $statistics;
@@ -72,6 +72,7 @@ class Album
      * @ORM\OneToMany(targetEntity="Picture", mappedBy="album")
      */
     protected $pictures;
+    
 
     public function __construct()
     {

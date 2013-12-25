@@ -30,7 +30,7 @@ class AlbumController extends BaseController
     /**
      * @Template()
      */
-    public function AlbumAction($uid, $id, $page){
+    public function detailAction($uid, $id, $page){
         if($this->getUser() == null || $uid != $this->getUser()->getId()){
             $user = $this->getUserRepository()->find($uid);
             if(!$user){
@@ -42,10 +42,11 @@ class AlbumController extends BaseController
         if(!$album = $this->getAlbumRepository()->find($id)){
             throw new NotFoundHttpException('请求的页面不存在');
         }
-        $this->getPictureRepository()->getAlbumPicturesQuery();
+        $query = $this->getPictureRepository()->getAlbumPicturesQuery($album);
         $pictures = $this->get('knp_paginator')->paginate($query, $page, 20);
         return array(
             'user' => $user,
+            'album' => $album,
             'pictures' => $pictures
         );
     }

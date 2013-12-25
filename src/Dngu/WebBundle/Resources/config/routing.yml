@@ -11,7 +11,7 @@ album_list:
     defaults: { _controller: DnguWebBundle:Album:list, page: 1 }
 album_detail:
     pattern: /@{uid}/album/{id}/{page}
-    defaults: { _controller: DnguWebBundle:Album:list, page: 1 }
+    defaults: { _controller: DnguWebBundle:Album:detail, page: 1 }
 
 #setting
 setting_basic:

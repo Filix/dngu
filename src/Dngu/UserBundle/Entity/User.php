@@ -5,6 +5,7 @@ namespace Dngu\UserBundle\Entity;
 use FOS\UserBundle\Entity\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\UserInterface;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity
@@ -25,10 +26,22 @@ class User extends BaseUser
      * @ORM\OneToMany(targetEntity="Oauth", mappedBy="user")
      */
     protected $oauths;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Dngu\WebBundle\Entity\Album", mappedBy="user")
+     */
+    protected $albums;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Dngu\WebBundle\Entity\Picture", mappedBy="user")
+     */
+    protected $pictures;
+    
     public function __construct()
     {
         parent::__construct();
+        $this->oauths = new ArrayCollection();
+        $this->pictures = new ArrayCollection();
     }
 
     /**
@@ -77,5 +90,71 @@ class User extends BaseUser
     public function getOauths()
     {
         return $this->oauths;
+    }
+
+    /**
+     * Add albums
+     *
+     * @param \Dngu\WebBundle\Entity\Album $albums
+     * @return User
+     */
+    public function addAlbum(\Dngu\WebBundle\Entity\Album $albums)
+    {
+        $this->albums[] = $albums;
+    
+        return $this;
+    }
+
+    /**
+     * Remove albums
+     *
+     * @param \Dngu\WebBundle\Entity\Album $albums
+     */
+    public function removeAlbum(\Dngu\WebBundle\Entity\Album $albums)
+    {
+        $this->albums->removeElement($albums);
+    }
+
+    /**
+     * Get albums
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getAlbums()
+    {
+        return $this->albums;
+    }
+
+    /**
+     * Add pictures
+     *
+     * @param \Dngu\WebBundle\Entity\Picture $pictures
+     * @return User
+     */
+    public function addPicture(\Dngu\WebBundle\Entity\Picture $pictures)
+    {
+        $this->pictures[] = $pictures;
+    
+        return $this;
+    }
+
+    /**
+     * Remove pictures
+     *
+     * @param \Dngu\WebBundle\Entity\Picture $pictures
+     */
+    public function removePicture(\Dngu\WebBundle\Entity\Picture $pictures)
+    {
+        $this->pictures->removeElement($pictures);
+    }
+
+    /**
+     * Get pictures
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPictures()
+    {
+        return $this->pictures;
     }
 }

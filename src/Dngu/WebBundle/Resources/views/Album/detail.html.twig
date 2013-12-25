@@ -1,9 +1,9 @@
 {% extends "::base.html.twig" %}
-{% block title %}{{ user.getUsername }} 的相册{% endblock title %}
+{% block title %}{{ user.getUsername }} 的相册 - {{ album.getName }}{% endblock title %}
 {% block page_title %}
 <div class="row-fluid">
     <div id="page-title" class="span4 offset4">
-        <h2>{{ user.getUsername }} 的相册</h2>
+        <h2>{{ album.getName }}</h2>
     </div>
 </div>
 {% endblock page_title %}
@@ -12,14 +12,14 @@
 <div id="wrapper">
     <!-- start: Portfolio -->
     <div id="wall" class="row-fluid">
-        {% for album in albums %}
+        {% for picture in pictures %}
         <div class="span3 item mgl">
             <div class="picture">
-                <a class="image" target="_blank" href="{{ path('album_detail', {'uid': album.getUser().getSlugOrId(), 'id': album.getId() }) }}" title="{{ album.getDescription() }}">
-                    <img src="{{ album.getCoverUrl }}" alt="{{ album.getDescription }}" />
+                <a class="image" target="_blank" href="" title="{{ picture.getDescription() }}">
+                    <img src="" alt="{{ picture.getDescription }}" />
                 </a>
                 <div class="description">
-                    <p>{{ album.getName }}</p>
+                    <p>{{ picture.getName }}</p>
                 </div>
                 <div class="meta">
                     <span><i class="fa-icon-calendar"></i>{{ album.getCreatedAt.format('Y-m-d H:i') }}</span>
