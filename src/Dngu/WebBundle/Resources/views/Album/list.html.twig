@@ -15,14 +15,16 @@
         {% for album in albums %}
         <div class="span3 item mgl">
             <div class="picture">
-                <a class="image" href="project.html" title="Title"><img src="img/photo5.jpg" alt="" /></a>
+                <a class="image" target="_blank" href="{{ path('album_detail', {'uid': album.getUser().getSlugOrId(), 'id': album.getId() }) }}" title="{{ album.getDescription() }}">
+                    <img src="{{ album.getCoverUrl }}" alt="{{ album.getDescription }}" />
+                </a>
                 <div class="description">
                     <p>
-                        反馈的数据恢复的卡萨好了发货的声卡了范德萨范德萨范德萨
+                        {{ album.getName }}
                     </p>
                 </div>
                 <div class="meta">
-                    <span><i class="fa-icon-calendar"></i>1 June 2011</span>
+                    <span><i class="fa-icon-calendar"></i>{{ album.getCreatedAt}}</span>
                     <span><i class="fa-icon-user"></i> <a href="#">lucas</a></span>
                     <span><i class="fa-icon-heart-empty"></i> 88</span>
                 </div>

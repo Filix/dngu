@@ -40,6 +40,11 @@ class Album
      * @ORM\Column(type="boolean")
      */
     protected $is_deleted = false;
+    
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
+    protected $cover;
 
     /**
      * @ORM\Column(type="datetime")
@@ -278,5 +283,65 @@ class Album
     public function getCreatedAt()
     {
         return $this->created_at;
+    }
+
+    /**
+     * Set cover
+     *
+     * @param string $cover
+     * @return Album
+     */
+    public function setCover($cover)
+    {
+        $this->cover = $cover;
+    
+        return $this;
+    }
+
+    /**
+     * Get cover
+     *
+     * @return string 
+     */
+    public function getCover()
+    {
+        return $this->cover;
+    }
+    
+    public function getCoverUrl(){
+        return $this->getCover() ? $this->getCover() : 'https://www.google.com.hk/logos/doodles/2013/holiday-series-2013-1-4826655121997824-hp.jpg';
+    }
+
+    /**
+     * Add pictures
+     *
+     * @param \Dngu\WebBundle\Entity\Picture $pictures
+     * @return Album
+     */
+    public function addPicture(\Dngu\WebBundle\Entity\Picture $pictures)
+    {
+        $this->pictures[] = $pictures;
+    
+        return $this;
+    }
+
+    /**
+     * Remove pictures
+     *
+     * @param \Dngu\WebBundle\Entity\Picture $pictures
+     */
+    public function removePicture(\Dngu\WebBundle\Entity\Picture $pictures)
+    {
+        $this->pictures->removeElement($pictures);
+    }
+
+    /**
+     * Get pictures
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPictures()
+    {
+        return $this->pictures;
     }
 }

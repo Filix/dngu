@@ -200,4 +200,27 @@ class Picture
     {
         return $this->statistics;
     }
+
+    /**
+     * Set album
+     *
+     * @param \Dngu\WebBundle\Entity\Album $album
+     * @return Picture
+     */
+    public function setAlbum(\Dngu\WebBundle\Entity\Album $album)
+    {
+        $this->album = $album;
+    
+        return $this;
+    }
+
+    /**
+     * Get album
+     *
+     * @return \Dngu\WebBundle\Entity\Album 
+     */
+    public function getAlbum()
+    {
+        return $this->album;
+    }
 }

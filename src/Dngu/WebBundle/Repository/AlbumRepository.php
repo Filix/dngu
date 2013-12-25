@@ -19,6 +19,8 @@ class AlbumRepository extends EntityRepository
                         ->createQueryBuilder()
                         ->select('a')
                         ->from('DnguWebBundle:Album', 'a')
+                        ->innerJoin('a.user', 'u')
+                        ->innerJoin('a.statistics', 's')
                         ->where('a.user = :user')
                         ->getQuery()
                         ->setParameter('user', $user);

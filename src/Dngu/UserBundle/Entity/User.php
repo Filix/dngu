@@ -40,6 +40,11 @@ class User extends BaseUser
     {
         return $this->id;
     }
+    
+    public function getSlugOrId(){
+        return $this->getId();
+//        return $this->slug ? $this->slug : $this->id;
+    }
 
     /**
      * Add oauths
