@@ -22,6 +22,7 @@ class TwigExtension extends \Twig_Extension{
     public function getFunctions(){
         return array(
             'user_home' => new \Twig_Function_Method($this, 'getUserHomeUrl'),
+            'user_albums' => new \Twig_Function_Method($this, 'getUserAlbumsUrl'),
         );
     }
 
@@ -38,6 +39,10 @@ class TwigExtension extends \Twig_Extension{
     
     public function getUserHomeUrl(User $user, $absolute = false){
         return $this->container->get('dngu.user.router')->getHomeUrl($user, $absolute);
+    }
+    
+    public function getUserAlbumsUrl(User $user, $page = 1, $absolute = false){
+        return $this->container->get('router')->generate('album_list', array('uid' => $user->getSlugOrId(), 'page' => $page), $absolute);
     }
 
 }

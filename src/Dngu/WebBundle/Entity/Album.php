@@ -44,12 +44,7 @@ class Album
     /**
      * @ORM\Column(type="boolean")
      */
-    protected $is_deleted = false;
-    
-    /**
-     * @ORM\Column(type="string", length=100)
-     */
-    protected $cover;
+    protected $is_deleted = false;    
 
     /**
      * @ORM\Column(type="datetime")

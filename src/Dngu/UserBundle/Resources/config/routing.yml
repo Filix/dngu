@@ -1,6 +1,9 @@
 login:
     pattern:  /login
     defaults: { _controller: DnguUserBundle:Login:login }
+logout:
+    pattern:  /logout
+    defaults: { _controller: FOSUserBundle:Security:logout }
 
 register:
     pattern:  /register
