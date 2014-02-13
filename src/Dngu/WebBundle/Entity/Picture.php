@@ -42,16 +42,22 @@ class Picture
     protected $updated_at;
     
     /**
-     * @ORM\ManyToOne(targetEntity="Statistics", inversedBy="Statistics")
+     * @ORM\ManyToOne(targetEntity="Statistics")
      * @ORM\JoinColumn(name="statistics_id", referencedColumnName="id", nullable=false)
      */
     protected $statistics;
     
     /**
-     * @ORM\ManyToOne(targetEntity="Album", inversedBy="Album")
+     * @ORM\ManyToOne(targetEntity="Album", inversedBy="pictures")
      * @ORM\JoinColumn(name="album_id", referencedColumnName="id", nullable=false)
      */
     protected $album;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Dngu\UserBundle\Entity\User", inversedBy="pictures")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
+     */
+    protected $user;
 
     /**
      * Get id
@@ -222,5 +228,28 @@ class Picture
     public function getAlbum()
     {
         return $this->album;
+    }
+    
+    /**
+     * Set user
+     *
+     * @param \Dngu\UserBundle\Entity\User $user
+     * @return Picture
+     */
+    public function setUser(\Dngu\UserBundle\Entity\User $user)
+    {
+        $this->user = $user;
+    
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \Dngu\UserBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

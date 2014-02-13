@@ -16,11 +16,12 @@ class StaticsController extends BaseController
 //        $process->setParameters(array('album' => $album, 'operator' => $this->getUser()));
 //        $process->init();
 //        $result = $process->work('create');
-        if($result){
-            return new \Symfony\Component\HttpFoundation\Response('<h1>success</h1>');
-        }else{
-            ldd($process->getErrors());
-        }
+
+//        if($result){
+//            return new \Symfony\Component\HttpFoundation\Response('<h1>success</h1>');
+//        }else{
+//            ldd($process->getErrors());
+//        }
         return new \Symfony\Component\HttpFoundation\Response('<h1>success</h1>');
     }
 }
