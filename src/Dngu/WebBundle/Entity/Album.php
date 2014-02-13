@@ -30,6 +30,11 @@ class Album
      * @ORM\Column(type="string", length=100, nullable=true)
      */
     protected $description;
+    
+    /**
+     * @ORM\Column(type="string", length=100, nullable=true)
+     */
+    protected $cover;
 
     /**
      * @ORM\Column(type="boolean")
@@ -278,5 +283,61 @@ class Album
     public function getCreatedAt()
     {
         return $this->created_at;
+    }
+
+    /**
+     * Set cover
+     *
+     * @param string $cover
+     * @return Album
+     */
+    public function setCover($cover)
+    {
+        $this->cover = $cover;
+    
+        return $this;
+    }
+
+    /**
+     * Get cover
+     *
+     * @return string 
+     */
+    public function getCover()
+    {
+        return $this->cover;
+    }
+
+    /**
+     * Add pictures
+     *
+     * @param \Dngu\WebBundle\Entity\Picture $pictures
+     * @return Album
+     */
+    public function addPicture(\Dngu\WebBundle\Entity\Picture $pictures)
+    {
+        $this->pictures[] = $pictures;
+    
+        return $this;
+    }
+
+    /**
+     * Remove pictures
+     *
+     * @param \Dngu\WebBundle\Entity\Picture $pictures
+     */
+    public function removePicture(\Dngu\WebBundle\Entity\Picture $pictures)
+    {
+        $this->pictures->removeElement($pictures);
+    }
+
+    /**
+     * Get pictures
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPictures()
+    {
+        return $this->pictures;
     }
 }
