@@ -1,0 +1,7 @@
+parameters:
+#    dngu_api.example.class: Dngu\ApiBundle\Example
+
+services:
+#    dngu_api.example:
+#        class: %dngu_api.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

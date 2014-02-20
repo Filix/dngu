@@ -1,0 +1,20 @@
+{# default Sliding pagination control implementation #}
+{% if pageCount > 1 %}
+<ul class="pagination">
+    {% if first is defined and current != first %}
+        <a href="{{ path(route, query|merge({(pageParameterName): first})) }}" title="第1页"><li></li></a>
+    {% endif %}
+
+    {% for page in pagesInRange %}
+        {% if page != current %}
+            <a href="{{ path(route, query|merge({(pageParameterName): page})) }}" title="{{ page }}"><li></li></a>
+        {% else %}
+            <li class="current"></li>
+        {% endif %}
+    {% endfor %}
+    
+    {#% if last is defined and current != last %#}
+        <!--<a href="{{ path(route, query|merge({(pageParameterName): last})) }}" title="last"><li></li></a>-->
+    {#% endif %#}
+</ul>
+{% endif %}

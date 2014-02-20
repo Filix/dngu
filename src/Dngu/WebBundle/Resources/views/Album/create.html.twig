@@ -1,0 +1,41 @@
+{% extends "::base.html.twig" %}
+{% block title %}创建相册{% endblock title %}
+{% block page_title %}
+<div class="row-fluid">
+    <div id="page-title" class="span6 offset3">
+        <h2>创建相册</h2>
+    </div>
+</div>
+{% endblock page_title %}
+{% block wrapper %}
+<div class="row-fluid">
+    <div id="wrapper" class="full lr-page span6 offset3">
+        <div class="row-fluid">
+            <div id="login-form" class="span12">
+                <form method="post" action="{{ path('album_create') }}" >
+                {% if error %}  
+                <div class="page-title">
+                    <div class="text-error">{{ error }}</div>
+		</div>
+                {% endif %}
+                <div class="page-title-small">
+                    <h3>相册名</h3>
+                </div>
+                <div class="row-fluid">
+                    <input class="span12" id="name" name="name" type="text" value="" placeholder="相册名" />
+                </div>	
+                <div class="page-title-small">
+                    <h3>相册描述</h3>
+                </div>
+                <div class="row-fluid">
+                    <textarea class="span12" id="description" name="description" type="text" value="" placeholder="相册描述" ></textarea>
+                </div>	
+                <div class="actions">
+                    <button type="submit" name="_submit" class="btn span12">创 建</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock wrapper %}

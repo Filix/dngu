@@ -27,7 +27,8 @@
         {% endblock head_css %}
         {% block head_script %}
         {% javascripts
-                
+                '@DnguWebBundle/Resources/public/js/jquery/jquery-1.8.2.js'
+                '@DnguWebBundle/Resources/public/js/bootstrap/bootstrap.js'
         %}
         <script charset="utf-8" src="{{ asset_url }}"></script> 
         {% endjavascripts %}
@@ -134,15 +135,7 @@
         <!-- end: Under Footer -->	
         {% endblock footer %}
         {% block tail_script %}
-        
-        {% javascripts
-                '@DnguWebBundle/Resources/public/js/jquery/jquery-1.8.2.js'
-                '@DnguWebBundle/Resources/public/js/bootstrap/bootstrap.js'
-        %}
-        <script charset="utf-8" src="{{ asset_url }}"></script> 
-        {% endjavascripts %}
         {% endblock tail_script%}
-
     </body>
 </html>
 {% endblock all %}

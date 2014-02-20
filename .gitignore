@@ -13,6 +13,7 @@ composer.phar
 /web/css/*
 /web/*.log
 /web/uploads
+bin/
 *.bak
 *.back
 *.swp

@@ -108,4 +108,8 @@ abstract class BaseEntityProcessService
     public function addError($error){
         $this->errors[] = $error;
     }
+    
+    public function shiftError(){
+        return isset($this->errors[0]) ? $this->errors[0] : '';
+    }
 }

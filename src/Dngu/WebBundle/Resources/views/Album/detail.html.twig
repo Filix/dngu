@@ -5,6 +5,10 @@
     <div id="page-title" class="span4 offset4">
         <h2>{{ album.getName }}</h2>
     </div>
+    <div id="page-title-button" class="span2 offset2">
+        <a class="btn btn-large btn-primary" href="{{ path('album_create') }}">上传图片</a>
+    </div>
+    
 </div>
 {% endblock page_title %}
 
@@ -12,6 +16,11 @@
 <div id="wrapper">
     <!-- start: Portfolio -->
     <div id="wall" class="row-fluid">
+        <form action="{{ path('dngu_api_album_pic_upload') }}" method="post" enctype="multipart/form-data">
+            <input type="text" name="album_id" value="" />
+            <input type="file" name="image" />
+            <input type="submit" />
+        </form>
         {% for picture in pictures %}
         <div class="span3 item mgl">
             <div class="picture">

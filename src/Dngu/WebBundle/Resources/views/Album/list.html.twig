@@ -5,9 +5,17 @@
     <div id="page-title" class="span4 offset4">
         <h2>{{ user.getUsername }} 的相册</h2>
     </div>
+    <div id="page-title-button" class="span2 offset2">
+        <a class="btn btn-large btn-primary" href="{{ path('album_create') }}">创建相册</a>
+    </div>
 </div>
 {% endblock page_title %}
-
+{% block head_css %}
+{{ parent() }}
+{% stylesheets '@DnguWebBundle/Resources/public/css/jqueryPowerFloat/powerFloat.css' %}
+<link rel="stylesheet"  href="{{ asset_url }}" >
+{% endstylesheets %}
+{% endblock head_css %}
 {% block wrapper %}
 <div id="wrapper">
     <!-- start: Portfolio -->
@@ -29,6 +37,7 @@
             </div>
         </div>
         {% endfor %}
+        {{ knp_pagination_render(albums) }}
     </div>
     <!-- end: Portfolio -->
 </div>

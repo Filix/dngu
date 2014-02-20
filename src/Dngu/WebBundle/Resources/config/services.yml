@@ -24,3 +24,8 @@ services:
         class: Dngu\WebBundle\Util\UserRouterService
         arguments: [@router]
         
+    dngu.image.upload:
+        class: Dngu\WebBundle\Util\ImageUploadService
+        arguments: [%kernel.root_dir%]
+        
+        

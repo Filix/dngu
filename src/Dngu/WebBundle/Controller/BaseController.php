@@ -23,6 +23,11 @@ class BaseController extends Controller
         return $this->getContainer()->get('router');
     }
 
+    protected function isLogin()
+    {
+        return $this->getUser() ? true : false;
+    }
+
     /**
      * @param string $action
      * @param string $value
@@ -39,23 +44,22 @@ class BaseController extends Controller
     {
         return $this->getContainer()->get('session')->getFlashBag();
     }
-    
+
     protected function getDoctrineManager()
     {
         return $this->getDoctrine()->getManager();
     }
 
-
     protected function getUserRepository()
     {
         return $this->getDoctrine()->getRepository('DnguUserBundle:User');
     }
-    
+
     protected function getAlbumRepository()
     {
         return $this->getDoctrine()->getRepository('DnguWebBundle:Album');
     }
-    
+
     protected function getPictureRepository()
     {
         return $this->getDoctrine()->getRepository('DnguWebBundle:Picture');

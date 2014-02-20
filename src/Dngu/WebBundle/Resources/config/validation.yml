@@ -5,9 +5,9 @@ Dngu\WebBundle\Entity\Album:
                 message: 相册名称不能为空
             - Length: 
                 max: 20
-                maxMessage: 相册名称长度大于{{ limit }}个字
+                maxMessage: 相册名称最多{{ limit }}个字
         description:
            - Length:
                max: 100
-               maxMessage: 相册名称长度大于{{ limit }}个字
+               maxMessage: 相册描述最多{{ limit }}个字
         
